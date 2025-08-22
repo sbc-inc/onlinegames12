@@ -26,4 +26,4 @@ jobs:
 
       # 4. Deploy using npx (local package)
       - name: Deploy to Neocities
-        run: npx neocities push ./ --key ${{ secrets.NEOCITIES_API_KEY }}
+        run: npm run push
