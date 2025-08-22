@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SBC Revisory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc;
+        }
+    </style>
+</head>
+<body class="text-gray-800" data-no-back-button>
+    <header></header>
+    <main class="container mx-auto px-4 md:px-0 mt-8">
+        <section class="herosection bg-gradient-to-b from-red-950 to-cyan-950 text-white rounded-2xl shadow-xl p-8 md:p-16 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
+                Education Made Easy
+            </h1>
+            <p class="mt-4 text-lg md:text-xl font-medium max-w-2xl mx-auto opacity-90">
+                Revisory is a service that can help students to learn subjects at their own speed using AI.
+            </p>
+            <a href="/failed/?code=INVALID_SIGNON_AB" id="a_b_testing_link_hero" class="inline-block mt-8 px-8 py-3 bg-white text-blue-600 font-bold text-lg rounded-full shadow-lg hover:bg-gray-100 transition-colors duration-200">
+                Start Now
+            </a>
+        </section>
+    <footer></footer>
+    <script src="/siteWide.js"></script>
+    <script>
+        const heroLinkElement = document.getElementById("a_b_testing_link_hero");
+        const a_b_potentials = {
+            'inertia_': '/inertia_',
+            'wsv_oko': '/wsv_oko',
+            'wnot_ep': '/wnot_ep',
+            'cij_my-play': '/cij_my-play'
+        };
+
+        if (localStorage.getItem('sbc_ab_testing')) {
+            const abTestKey = localStorage.getItem('sbc_ab_testing');
+            if (a_b_potentials[abTestKey]) {
+                heroLinkElement.href = a_b_potentials[abTestKey];
+                console.log('[DEBUG]: AB Testing Key Found')
+            }
+        } else {
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oops...</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen bg-gray-50 text-gray-800 p-4">
+    <h1 class="text-3xl font-bold mb-4">Something went wrong on our end.</h1>
+    <p class="mb-2">Please use the back button in the corner of the page.</p>
+    <code class="bg-gray-200 px-2 py-1 rounded mb-2">INTERNAL_FAIL_AB_TESTING</code>
+    <p>AB Tester Code: <code class="bg-gray-200 px-2 py-1 rounded">Unknown</code></p>
+    <footer></footer>
+</body>
+<script src="/siteWide.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const query = new URLSearchParams(window.location.search);
+        const errorCode = query.has('code') ? query.get('code') + "_URL_DEFINED" : 'UNSPECIFIED_ERR';
+        document.querySelector('code').textContent = errorCode;
+    });
+</script>
+</html>

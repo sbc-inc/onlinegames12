@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SBC Revisory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-5px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.5s forwards;
+        }
+    </style>
+</head>
+<body class="text-gray-800" data-no-back-button>
+    <header></header>
+    <main>
+        <section id="searchArea" class="mt-8 bg-gradient-to-b from-red-950 to-cyan-950 text-white rounded-2xl shadow-xl p-8 md:p-16 text-center flex flex-col items-center gap-6">
+            <!-- Search Input -->
+            <input 
+                type="search" 
+                placeholder="Enter a game here..." 
+                id="gameSearch"
+                class="w-full max-w-md px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-4 focus:ring-cyan-500 focus:ring-opacity-50 transition duration-300"
+            />
+
+            <!-- No results message -->
+            <span id="noResults" class="text-red-400 mt-2 opacity-0 animate-fadeIn">
+                No results found. <strong class="text-white">Try again?</strong>
+            </span>
+        </section>
+
+        <section id="games" class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="game-item flex flex-col items-center p-4 bg-white rounded-lg shadow hover:scale-105 transition-transform" data-name="Tiny Fishing">
+                <img src="/games/tiny-fishing/thumb.png" class="w-20 h-20 mb-2 rounded" alt="Tiny Fishing">
+                <span class="font-semibold text-gray-800">Tiny Fishing</span>
+                <span class="text-gray-500 text-sm">Available in <code>wsv_oko</code> ✅</span>
+            </div>
+            <div class="game-item flex flex-col items-center p-4 bg-white rounded-lg shadow hover:scale-105 transition-transform opacity-50 cursor-not-allowed" data-name="Ragdoll Archers">
+                <img src="/games/ragdoll-archers/thumb.jpg" class="w-20 h-20 mb-2 rounded" alt="Ragdoll Archers">
+                <span class="font-semibold text-gray-800">Ragdoll Archers</span>
+                <span class="text-gray-500 text-sm">Currently unavailable ❌</span>
+            </div>
+            <!-- Add more game items here -->
+        </section>
+
+    </main>
+    <footer></footer>
+
+    <script>
+        const searchInput = document.getElementById('gameSearch');
+        const noResults = document.getElementById('noResults');
+        const games = document.querySelectorAll('.game-item');
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase().trim();
+            let found = false;
+
+            games.forEach(game => {
+                const name = game.dataset.name.toLowerCase();
+                if (name.includes(query)) {
+                    game.style.display = 'flex';
+                    found = true;
+                } else {
+                    game.style.display = 'none';
+                }
+            });
+
+            if (query && !found) {
+                noResults.style.opacity = '1';
+            } else {
+                noResults.style.opacity = '0';
+            }
+        });
+    </script>
+</body>
+</html>
