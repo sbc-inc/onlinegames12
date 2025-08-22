@@ -3,27 +3,23 @@ name: Deploy to Neocities
 on:
   push:
     branches:
-      - main
+      - main  # or your deployment branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      # 1. Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
-    - name: Install Neocities CLI
-      run: npm install -g neocities
-
-    # Add npm global binaries to PATH for subsequent steps
-    - name: Add npm global bin to PATH
-      run: echo "$(npm bin -g)" >> $GITHUB_PATH
-
-    - name: Deploy to Neocities
-      run: neocities push ./ --key ${{ secrets.NEOCITIES_API_KEY }}
+      # 3. Deploy using npx (no global install needed)
+      - name: Deploy to Neocities
+        run: npx neocities push ./ --key ${{ secrets.NEOCITIES_API_KEY }}
