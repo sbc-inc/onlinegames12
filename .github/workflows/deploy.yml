@@ -3,14 +3,14 @@ name: Deploy to Neocities
 on:
   push:
     branches:
-      - main  # or your deployment branch
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repository
+      # 1. Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -20,6 +20,10 @@ jobs:
         with:
           node-version: '20'
 
-      # 3. Deploy using npx (no global install needed)
+      # 3. Install dependencies locally
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Deploy using npx (local package)
       - name: Deploy to Neocities
         run: npx neocities push ./ --key ${{ secrets.NEOCITIES_API_KEY }}

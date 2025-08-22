@@ -1,0 +1,24 @@
+{
+  "name": "proto-games12",
+  "version": "1.0.0",
+  "description": "",
+  "main": "siteWide.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbc-inc/onlinegames12.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/sbc-inc/onlinegames12/issues"
+  },
+  "homepage": "https://github.com/sbc-inc/onlinegames12#readme",
+  "devDependencies": {
+    "neocities": "^0.0.3"
+  }
+}
