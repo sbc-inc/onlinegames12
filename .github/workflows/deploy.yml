@@ -18,7 +18,5 @@ jobs:
           node-version: '20'
       - name: Install dependencies
         run: npm install
-      - name: Deploy with npm script
-        env:
-          NEOCITIES_KEY: ${{ secrets.NEOCITIES_API_KEY }}
-        run: npm run push
+      - name: Deploy to Neocities
+        run: npx neocities push ./ --key ${{ secrets.NEOCITIES_API_KEY }}
