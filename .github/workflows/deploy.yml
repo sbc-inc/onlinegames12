@@ -1,0 +1,25 @@
+name: Deploy to Neocities
+
+on:
+  push:
+    branches:
+      - main  # change to your main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install Neocities CLI
+      run: npm install -g neocities
+
+    - name: Push to Neocities
+      run: neocities push ./ --key ${{ secrets.NEOCITIES_API_KEY }}
